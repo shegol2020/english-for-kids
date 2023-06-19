@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> partials/header }}
+<body>
+<div class="container cards-container">
+    {{#each cards}}
+        {{> partials/category this}}
+    {{/each}}
+</div>
+</body>
+</html>

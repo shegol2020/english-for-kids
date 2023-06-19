@@ -1,0 +1,24 @@
+<div id="card_{{ word }}" class="card" data-name="{{ word }}" style="width: 18rem;">
+    <img class="card-img-top" src="/img/cards/{{ word }}.jpg" alt="Card image cap">
+    <audio id="audio_{{ word }}">
+        <source src="/audio/{{ word }}.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="card-body">
+        <h5 class="card-title">{{ word }}</h5>
+        <button type="button" class="btn btn-light sound-btn"><i class="fa-solid fa-music"></i>  Sound</button>
+        <button type="button" class="btn btn-light translation-btn"><i class="fa-solid fa-language"></i>  Translation</button>
+    </div>
+</div>
+
+<script>
+    <!--document.addEventListener('DOMContentLoaded', () => {-->
+    <!--    const soundButton = document.querySelector('#card_{{ word }}');-->
+    <!--    const audio = document.querySelector('#audio_{{ word }}');-->
+    <!--    soundButton.addEventListener('click', () => {-->
+    <!--        audio.play();-->
+    <!--    });-->
+    <!--});-->
+</script>
+
+<script src="https://kit.fontawesome.com/e83d293646.js" crossorigin="anonymous"></script>

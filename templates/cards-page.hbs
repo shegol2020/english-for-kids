@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> partials/header }}
+<body>
+<div class="btn-container">
+<button type="button" class="btn btn-primary switch-btn">Switch to play mode</button>
+<button class="start-btn btn btn-primary"><i class="fa-solid fa-play"></i>  Start the game</button>
+    <p class="task-text alert alert-dismissible alert-primary hidden"></p>
+</div>
+    <div class="container cards-container">
+        {{#each cards}}
+                {{> partials/card this}}
+        {{/each}}
+    </div>
+   <div class="answer-container"></div>
+<div class="btn-container">
+<button type="button" class="btn btn-primary repeat-btn hidden"><i class="fa-solid fa-repeat"></i>  Repeat the word</button>
+<button type="button" class="btn btn-primary quit-btn hidden"><i class="fa-solid fa-circle-xmark"></i>  Quit the game</button>
+</div>
+</body>
+</html>
