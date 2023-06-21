@@ -23,6 +23,8 @@ let playSession;
 
 /* event listeners */
 
+let gameModeOn = false;
+
 switchBtn.addEventListener("click", () => {
     switchBtn.classList.toggle("btn-primary");
     switchBtn.classList.toggle("btn-secondary");
@@ -36,8 +38,8 @@ switchBtn.addEventListener("click", () => {
 startBtn.addEventListener("click", () => {
     repeatBtn.classList.add("active");
     quitBtn.classList.add("active");
+    startBtn.classList.remove("active");
     taskText.classList.add("active");
-    // startBtn.classList.remove("active"); //turn on after debugging
     cardBody.forEach(card => {
        card.remove(); //accessibility??
     })
@@ -46,6 +48,7 @@ startBtn.addEventListener("click", () => {
     const currentCardName = playSession.getCurrentCardName();
     playCurrentAudio(currentCardName);
     renderCurrentWord(currentCardName);
+    gameModeOn = true;
 });
 
 repeatBtn.addEventListener("click", () => {
@@ -57,34 +60,61 @@ quitBtn.addEventListener("click", () => {
     finishGame();
 });
 
-cardsContainer.addEventListener("click", handleCardClick);
+cardsContainer.addEventListener("click", handleTrainCardClick);
+cardsContainer.addEventListener("click", handleGameCardClick);
 
-function handleCardClick(e){
-    if(playSession.isGameFinished()){
-        cardsContainer.removeEventListener("click", handleCardClick);
-    }
-    let cardName = e.target.parentElement.dataset.name;
-    let cardElement = e.target.parentElement;
-    if (!cardName){
-        return
-    }
-    let isAnswerRight = playSession.guessCard(cardName);
-    playAnswerSound(isAnswerRight); //turn on
-    let result = playSession.getAnswers();
-    const rightAnswers = result.right;
-    const wrongAnswers = result.wrong;
-    console.log(result);
-    const currentCard = playSession.getCurrentCardName();
-    renderResult(rightAnswers, wrongAnswers);
-    if(isAnswerRight){
-        blockCard(cardElement);
-        playCurrentAudio(currentCard); //async?
-        renderCurrentWord(currentCard);
-        if(playSession.isGameFinished()){
-            finishGame(rightAnswers, wrongAnswers);
-            cardsContainer.removeEventListener("click", handleCardClick);
+
+
+function handleTrainCardClick(e){
+    let button = e.target;
+    if (button.classList.contains('sound-btn') || button.classList.contains('translation-btn')) {
+        if (!gameModeOn) {
+            let card = button.closest('.card');
+            let cardName = card.getAttribute('data-name');
+            if (button.classList.contains('sound-btn')) {
+                handleSoundBtn(cardName);
+            }
+            if (button.classList.contains('translation-btn')) {
+                console.log("translation btn clicked, that's all for today");
+                // handleTranslationBtn(cardName)
+            }
         }
     }
+}
+
+function handleSoundBtn(name){
+    const audio = document.querySelector(`#audio_${name}`);
+    audio.play();
+}
+
+function handleGameCardClick(e){
+    if (gameModeOn) {
+        // if(playSession.isGameFinished()){
+        //     cardsContainer.removeEventListener("click", handleGameCardClick);
+        // }
+        let cardName = e.target.parentElement.dataset.name;
+        let cardElement = e.target.parentElement;
+        if (!cardName){
+            return
+        }
+        let isAnswerRight = playSession.guessCard(cardName);
+        playAnswerSound(isAnswerRight); //turn on
+        let result = playSession.getAnswers();
+        const rightAnswers = result.right;
+        const wrongAnswers = result.wrong;
+        const currentCard = playSession.getCurrentCardName();
+        renderResult(rightAnswers, wrongAnswers);
+        if(isAnswerRight){
+            blockCard(cardElement);
+            playCurrentAudio(currentCard); //async?
+            renderCurrentWord(currentCard);
+            if(playSession.isGameFinished()){
+                finishGame(rightAnswers, wrongAnswers);
+                cardsContainer.removeEventListener("click", handleGameCardClick);
+            }
+        }
+    }
+
 }
 
 function playCurrentAudio(word){
@@ -93,9 +123,6 @@ function playCurrentAudio(word){
         audio.play();
     }
 }
-
-module.exports = playCurrentAudio;
-
 
 function renderCurrentWord(word){
     taskTextEl.innerText = `Find ${word}`;
@@ -212,5 +239,4 @@ clickableElements.forEach((ele) =>
 // });
 //
 
-export {renderCurrentWord}
 

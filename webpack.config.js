@@ -53,7 +53,7 @@ module.exports = {
             console.log(JSON.stringify(card))
             return new HtmlWebpackPlugin({
                 template: './templates/cards-page.hbs',
-                // chunks: [ "common" ],
+                chunks: [ "common", "cards-page" ],
                 filename: `cards-${card.categoryId}.html`,
                 templateParameters: card
             })
