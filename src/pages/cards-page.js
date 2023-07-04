@@ -1,6 +1,8 @@
-import "./css/styles.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { PlaySession } from "./play-logic.js"
+import "../css/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { PlaySession } from "../play-logic.js"
+import { Statistics } from "../stat/statistics.js";
+
 
 /* selectors */
 const card = document.querySelector(".card");
@@ -20,6 +22,7 @@ const answerContainer = document.querySelector(".answer-container");
 const successAudio = new Audio('audio/success.mp3');
 const failureAudio = new Audio('audio/failure.mp3');
 
+const statistics = new Statistics(localStorage);
 let playSession;
 let gameModeOn = false;
 
@@ -44,7 +47,7 @@ startBtn.addEventListener("click", () => {
         card.remove(); //accessibility??
     })
     const currentCardsNames = getCardsNames();
-    playSession = new PlaySession(currentCardsNames);
+    playSession = new PlaySession(currentCardsNames, statistics);
     const currentCardName = playSession.getCurrentCardName();
     playCurrentAudio(currentCardName);
     renderCurrentWord(currentCardName);

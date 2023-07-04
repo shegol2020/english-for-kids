@@ -5,10 +5,11 @@ export class PlaySession {
     rightAnswersCount = 0;
     wrongAnswersCount = 0;
 
-    constructor(cards) {
+    constructor(cards, statistics) {
         let mixedCards = this.shuffleArray(cards);
         this.gameCardSeq.push(...mixedCards);
         this.nextCard();
+        this.statistics = statistics;
     }
 
     shuffleArray(array) {
@@ -38,10 +39,12 @@ export class PlaySession {
             isRight = true;
             this.answerCount++;
             this.rightAnswersCount++;
+            this.statistics.updateRightAnswer(card);
             this.nextCard();
         } else {
             this.answerCount++;
             this.wrongAnswersCount++;
+            this.statistics.updateWrongAnswer(this._currentCard);
         }
         return isRight;
     }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> partials/header }}
+<body>
+<div class="stat-body">
+    <h1 class="stat-title">Statistics</h1>
+    <button class="stat-clear-btn">Clear</button>
+    <button class="stat-train-btn">Train</button>
+    <div class="stat-table">
+        <table class="table sortable">
+            <caption>
+                Word stats
+                <span class="sr-only">, column headers with buttons are sortable.</span>
+            </caption>
+            {{> partials/stat-table }}
+            <tbody>
+            {{#each cards}}
+                {{> partials/stat-row this}}
+            {{/each}}
+            </tbody>
+        </table>    </div>
+</div>
+</body>
+</html>

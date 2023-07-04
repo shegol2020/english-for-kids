@@ -1,17 +1,22 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
-const path = require('path');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyPlugin from "copy-webpack-plugin";
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const cards = require("./cards.json");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+import cards from "./cards.json" assert { type: "json" };
+const categories = cards.map(obj => obj.categoryName);
 
 // This is the main configuration object.
 // Here, you write different options and tell Webpack what to do
-module.exports = {
-
+export default {
     entry: {
-        main: './src/main-page.js',
-        cards: './src/cards-page.js',
-        common: "./src/common.js"
+        main: './src/pages/main-page.js',
+        cards: './src/pages/cards-page.js',
+        common: "./src/common.js",
+        stats: "./src/pages/stat-page.js"
     },
 
     module: {
@@ -47,7 +52,7 @@ module.exports = {
             template: './templates/main-page.hbs',
             chunks: [ "common", "main-page" ],
             filename: "index.html",
-            templateParameters: { cards }
+            templateParameters: { cards, categories }
         }),
         ...cards.map(card => {
             console.log(JSON.stringify(card))
@@ -57,6 +62,12 @@ module.exports = {
                 filename: `cards-${card.categoryId}.html`,
                 templateParameters: card
             })
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/stats.hbs',
+            chunks: [ "common", "stats"],
+            filename: "stats.html",
+            templateParameters: { cards }
         }),
         new CopyPlugin({
             patterns: [

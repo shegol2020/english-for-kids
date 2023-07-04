@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "description",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "start": "webpack serve --open",
     "build": "webpack build",
-    "test": "jest"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
