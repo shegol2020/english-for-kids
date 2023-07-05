@@ -40,7 +40,7 @@ export class Statistics {
     }
     errorCountUpdate(currentObj){
         const sum = currentObj.right+currentObj.wrong;
-        const errors = currentObj.wrong/sum*100;
+        const errors = Math.round((currentObj.wrong / sum) * 100);
         return errors;
     }
     clearStatistics(){
