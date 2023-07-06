@@ -65,9 +65,14 @@ quitBtn.addEventListener("click", () => {
 
 cardsContainer.addEventListener("click", handleTrainCardClick);
 cardsContainer.addEventListener("click", handleGameCardClick);
-cardsContainer.addEventListener("mouseover", (e) => {
-   //tbd
-});
+
+cards.forEach(card => {
+    card.addEventListener("mouseleave", (e) => {
+            if(e.target.children[0].classList.contains("hidden")){
+                rotateCard(card);
+            }
+    })
+})
 
 function handleTrainCardClick(e){
     let button = e.target;
