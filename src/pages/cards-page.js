@@ -82,6 +82,7 @@ function handleTrainCardClick(e){
             let cardName = card.getAttribute('data-name');
             if (button.classList.contains('sound-btn')) {
                 playSound(cardName);
+                statistics.updateTrainedWord(cardName);
             }
             if (button.classList.contains('translation-btn')) {
                 rotateCard(card);
