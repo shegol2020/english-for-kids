@@ -76,8 +76,7 @@ cards.forEach(card => {
 
 function handleTrainCardClick(e){
     let button = e.target;
-    if (button.classList.contains('sound-btn') || button.classList.contains('translation-btn')) {
-        if (!gameModeOn) {
+    if (!gameModeOn || button.classList.contains('sound-btn') || button.classList.contains('translation-btn')) {
             let card = button.closest('.card');
             let cardName = card.getAttribute('data-name');
             if (button.classList.contains('sound-btn')) {
@@ -88,7 +87,6 @@ function handleTrainCardClick(e){
                 rotateCard(card);
                 statistics.updateTrainedWord(cardName);
             }
-        }
     }
 }
 
@@ -98,31 +96,33 @@ function playSound(name){
 }
 
 function handleGameCardClick(e){
-    if (gameModeOn) {
-        // if(playSession.isGameFinished()){
-        //     cardsContainer.removeEventListener("click", handleGameCardClick);
-        // }
-        let cardName = e.target.parentElement.parentElement.dataset.name;
-        let cardElement = e.target.parentElement.parentElement;
-        if (!cardName){
-            return
-        }
-        let isAnswerRight = playSession.guessCard(cardName);
-        playAnswerSound(isAnswerRight); //turn on
-        let result = playSession.getAnswers();
-        const rightAnswers = result.right;
-        const wrongAnswers = result.wrong;
-        const currentCard = playSession.getCurrentCardName();
-        renderResult(rightAnswers, wrongAnswers);
-        if(isAnswerRight){
-            blockCard(cardElement);
-            playCurrentAudio(currentCard); //async?
-            renderCurrentWord(currentCard);
-            if(playSession.isGameFinished()){
-                finishGame(rightAnswers, wrongAnswers);
-                cardsContainer.removeEventListener("click", handleGameCardClick);
-            }
-        }
+    if (!gameModeOn) {
+        return;
+    }
+
+    let cardName = e.target.parentElement.parentElement.dataset.name;
+    if (!cardName){
+        return
+    }
+
+    let cardElement = e.target.parentElement.parentElement;
+    let isAnswerRight = playSession.guessCard(cardName);
+    let result = playSession.getAnswers();
+    const rightAnswers = result.right;
+    const wrongAnswers = result.wrong;
+    const currentCard = playSession.getCurrentCardName();
+    renderResult(rightAnswers, wrongAnswers);
+    playAnswerSound(isAnswerRight);
+
+    if (isAnswerRight) {
+        blockCard(cardElement);
+        playCurrentAudio(currentCard); //async?
+        renderCurrentWord(currentCard);
+    }
+
+    if (playSession.isGameFinished()) {
+        finishGame(rightAnswers, wrongAnswers);
+        cardsContainer.removeEventListener("click", handleGameCardClick);
     }
 
 }
