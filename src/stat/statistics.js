@@ -3,11 +3,11 @@ export class Statistics {
         this.storage = storage;
     }
     putObject(obj){
-        let key = obj["word"];
+        let key = `word/${obj["word"]}`;
         this.storage.setItem(key, JSON.stringify(obj));
     }
     getObject(key){
-        let retrievedObjectString = this.storage.getItem(key);
+        let retrievedObjectString = this.storage.getItem(`word/${key}`);
         return JSON.parse(retrievedObjectString)
     }
     getCurrentObject(card){
@@ -40,23 +40,38 @@ export class Statistics {
     }
     errorCountUpdate(currentObj){
         const sum = currentObj.right+currentObj.wrong;
-        const errors = currentObj.wrong/sum*100;
+        const errors = Math.round((currentObj.wrong / sum) * 100);
         return errors;
     }
     clearStatistics(){
         this.storage.clear();
     }
-    getAllStorage(){
+
+    getWordsFromStorage(){
         const allData = {};
-        Object.keys(this.storage).forEach(key => {
-            const valueString = this.storage.getItem(key);
-            const valueObject = JSON.parse(valueString);
-            allData[key] = valueObject;
+        const storageKeys = Object.keys(this.storage);
+
+        storageKeys.forEach(key => {
+            if (key.startsWith("word/")) {
+                const valueString = this.storage.getItem(key);
+                const valueObject = JSON.parse(valueString);
+                allData[key] = valueObject;
+            }
         });
-        return allData;
+        const cleanedData = this.cleanWords(allData);
+        return cleanedData;
+    }
+    cleanWords(storageList){ //"word/cry" => "cry"
+        let cleanedList = {};
+        for (let key in storageList) {
+            const newValue = storageList[key];
+            const newKey = key.slice(5);
+            cleanedList[newKey] = newValue;
+        }
+        return cleanedList
     }
     getTopErrors(number){
-        const words = this.getAllStorage();
+        const words = this.getWordsFromStorage();
         const sortedWords = Object.values(words).sort((a, b) => b.errors - a.errors);
         if(sortedWords.length < number){
             return sortedWords

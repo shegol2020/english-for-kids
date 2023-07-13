@@ -66,54 +66,63 @@ quitBtn.addEventListener("click", () => {
 cardsContainer.addEventListener("click", handleTrainCardClick);
 cardsContainer.addEventListener("click", handleGameCardClick);
 
+cards.forEach(card => {
+    card.addEventListener("mouseleave", (e) => {
+            if(e.target.children[0].classList.contains("hidden")){
+                rotateCard(card);
+            }
+    })
+})
+
 function handleTrainCardClick(e){
     let button = e.target;
-    if (button.classList.contains('sound-btn') || button.classList.contains('translation-btn')) {
-        if (!gameModeOn) {
+    if (!gameModeOn || button.classList.contains('sound-btn') || button.classList.contains('translation-btn')) {
             let card = button.closest('.card');
             let cardName = card.getAttribute('data-name');
             if (button.classList.contains('sound-btn')) {
-                handleSoundBtn(cardName);
+                playSound(cardName);
+                statistics.updateTrainedWord(cardName);
             }
             if (button.classList.contains('translation-btn')) {
-                console.log("translation btn clicked, that's all for today");
-                // handleTranslationBtn(cardName)
+                rotateCard(card);
+                statistics.updateTrainedWord(cardName);
             }
-        }
     }
 }
 
-function handleSoundBtn(name){
+function playSound(name){
     const audio = document.querySelector(`#audio_${name}`);
     audio.play();
 }
 
 function handleGameCardClick(e){
-    if (gameModeOn) {
-        // if(playSession.isGameFinished()){
-        //     cardsContainer.removeEventListener("click", handleGameCardClick);
-        // }
-        let cardName = e.target.parentElement.dataset.name;
-        let cardElement = e.target.parentElement;
-        if (!cardName){
-            return
-        }
-        let isAnswerRight = playSession.guessCard(cardName);
-        playAnswerSound(isAnswerRight); //turn on
-        let result = playSession.getAnswers();
-        const rightAnswers = result.right;
-        const wrongAnswers = result.wrong;
-        const currentCard = playSession.getCurrentCardName();
-        renderResult(rightAnswers, wrongAnswers);
-        if(isAnswerRight){
-            blockCard(cardElement);
-            playCurrentAudio(currentCard); //async?
-            renderCurrentWord(currentCard);
-            if(playSession.isGameFinished()){
-                finishGame(rightAnswers, wrongAnswers);
-                cardsContainer.removeEventListener("click", handleGameCardClick);
-            }
-        }
+    if (!gameModeOn) {
+        return;
+    }
+
+    let cardName = e.target.parentElement.parentElement.dataset.name;
+    if (!cardName){
+        return
+    }
+
+    let cardElement = e.target.parentElement.parentElement;
+    let isAnswerRight = playSession.guessCard(cardName);
+    let result = playSession.getAnswers();
+    const rightAnswers = result.right;
+    const wrongAnswers = result.wrong;
+    const currentCard = playSession.getCurrentCardName();
+    renderResult(rightAnswers, wrongAnswers);
+    playAnswerSound(isAnswerRight);
+
+    if (isAnswerRight) {
+        blockCard(cardElement);
+        playCurrentAudio(currentCard); //async?
+        renderCurrentWord(currentCard);
+    }
+
+    if (playSession.isGameFinished()) {
+        finishGame(rightAnswers, wrongAnswers);
+        cardsContainer.removeEventListener("click", handleGameCardClick);
     }
 
 }
@@ -187,42 +196,26 @@ function finishGame(rightAnswers, wrongAnswers){
         answerContainer.firstChild.remove();
     }
     if(rightAnswers || wrongAnswers){
-        const endMsg = document.createElement("div");
-        endMsg.innerText = `Congratulations! You have ${rightAnswers} right answers and ${wrongAnswers} wrong answers.`;
-        answerContainer.append(endMsg);
+        popup.classList.remove("hidden");
+        popupText.innerText = `Congratulations! You have ${rightAnswers} right answers and ${wrongAnswers} wrong answers.`;
     }
 
 }
 
-/* TBD */
-
-/* clickable cards */
-clickableElements.forEach((ele) =>
-    ele.addEventListener("click", (e) => {
-        console.log("clicked")
-        e.stopPropagation()
-    })
-);
-// function handleClick(event) {
-//     const noTextSelected = !window.getSelection().toString();
-//
-//     if (noTextSelected) {
-//         categoryLink.click();
-//     }
-// }
-
-// card.addEventListener("click", handleClick);
+function rotateCard(card){
+    const frontSide = card.firstElementChild;
+    const backSide = card.children[1];
+    frontSide.classList.toggle("hidden");
+    backSide.classList.toggle("hidden");
+}
 
 
-/* box flip */
-// const flipBoxInner = document.querySelector('.flip-box-inner');
-// const translationBtn = document.querySelector(".translation-btn")
-//
-// translationBtn.addEventListener('click', () => {
-//     flipBoxInner.classList.toggle('rotation');
-// });
-//
-// flipBoxInner.addEventListener('mouseout', () => {
-//     flipBoxInner.classList.remove('rotation');
-// });
-//
+/* pop-up */
+
+const popup = document.querySelector(".popup");
+const popupBtn = document.querySelector(".popup-close-btn");
+const popupText = document.querySelector(".popup-text");
+
+popupBtn.addEventListener("click", () => {
+    popup.classList.add("hidden");
+})

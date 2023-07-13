@@ -26,7 +26,7 @@ trainStatBtn.addEventListener("click", () => {
 //put data from localStorage into statistics table
 function insertStatInTable(){
     const dataTable = Array.from(document.querySelectorAll("tr[data-name]"));
-    const result = stats.getAllStorage();
+    const result = stats.getWordsFromStorage();
     dataTable.forEach(row => {
         const rowName = row.getAttribute("data-name");
         if (result.hasOwnProperty(rowName)) {
