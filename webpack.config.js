@@ -16,7 +16,8 @@ export default {
         main: './src/pages/main-page.js',
         cards: './src/pages/cards-page.js',
         common: "./src/common.js",
-        stats: "./src/pages/stat-page.js"
+        stats: "./src/pages/stat-page.js",
+        wordplay: "./src/pages/wordplay-page.js"
     },
 
     module: {
@@ -68,6 +69,11 @@ export default {
             chunks: [ "common", "stats"],
             filename: "stats.html",
             templateParameters: { cards }
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/wordplay-page.hbs',
+            chunks: [ "wordplay", "cards" ],
+            filename: "wordplay.html",
         }),
         new CopyPlugin({
             patterns: [

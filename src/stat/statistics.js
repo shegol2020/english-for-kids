@@ -72,7 +72,8 @@ export class Statistics {
     }
     getTopErrors(number){
         const words = this.getWordsFromStorage();
-        const sortedWords = Object.values(words).sort((a, b) => b.errors - a.errors);
+        const filteredWords = Object.values(words).filter(word => word.errors !== 0);
+        const sortedWords = filteredWords.sort((a, b) => b.errors - a.errors);
         if(sortedWords.length < number){
             return sortedWords
         } else {
@@ -80,3 +81,26 @@ export class Statistics {
         }
     }
 }
+
+class StorageMock {
+    store = {};
+
+    getItem = (key) => this.store[key];
+    setItem = (key, value) => {
+        this.store[key] = value;
+    };
+    removeItem = (key) => {
+        delete this.store[key];
+    };
+    clear = () => {
+        this.store = {};
+    };
+}
+
+export const stats = (() => {
+    if (typeof localStorage !== 'undefined') {
+        return new Statistics(localStorage);
+    }
+   return new Statistics(new StorageMock())
+})();
+

@@ -1,12 +1,12 @@
 import { SortableTable } from "../stat/sortabletable.js";
-import { Statistics } from "../stat/statistics.js";
+import { stats } from "../stat/statistics.js";
 
-const stats = new Statistics(localStorage);
 const clearStatBtn = document.querySelector(".stat-clear-btn");
 const trainStatBtn = document.querySelector(".stat-train-btn");
 
+
 // Initialize sortable table buttons
-window.addEventListener('load', function () {
+document.addEventListener("DOMContentLoaded", function () {
     let sortableTables = document.querySelectorAll('table.sortable');
     for (let i = 0; i < sortableTables.length; i++) {
         new SortableTable(sortableTables[i]);
@@ -20,8 +20,10 @@ clearStatBtn.addEventListener("click", () => {
 })
 
 trainStatBtn.addEventListener("click", () => {
-    console.log(formTrainedList(stats.getTopErrors(8)));
+    window.location.href = '/wordplay.html';
+    //generateCards(formTrainedList(stats.getTopErrors(8)));
 })
+
 
 //put data from localStorage into statistics table
 function insertStatInTable(){
@@ -44,9 +46,7 @@ function updateCellValue(value, row, name, result){
     cell.innerHTML = res;
 }
 
-function formTrainedList(wordList){
-    return wordList.map(obj => obj.word)
-}
+
 
 
 
