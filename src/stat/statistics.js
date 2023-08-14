@@ -8,7 +8,7 @@ export class Statistics {
     }
     getObject(key){
         let retrievedObjectString = this.storage.getItem(`word/${key}`);
-        return JSON.parse(retrievedObjectString)
+        return retrievedObjectString ? JSON.parse(retrievedObjectString) : undefined;
     }
     getCurrentObject(card){
         let currentObj = this.getObject(card);
@@ -22,21 +22,17 @@ export class Statistics {
         currentObj.right++;
         currentObj.errors = this.errorCountUpdate(currentObj);
         this.putObject(currentObj);
-        console.log(this.getObject(card));
     }
     updateWrongAnswer(card){
         let currentObj = this.getCurrentObject(card);
         currentObj.wrong++;
         currentObj.errors = this.errorCountUpdate(currentObj);
         this.putObject(currentObj);
-        console.log(this.getObject(card));
-
     }
     updateTrainedWord(card){
         let currentObj = this.getCurrentObject(card);
         currentObj.trained++;
         this.putObject(currentObj);
-        console.log(this.getObject(card));
     }
     errorCountUpdate(currentObj){
         const sum = currentObj.right+currentObj.wrong;
@@ -82,19 +78,24 @@ export class Statistics {
     }
 }
 
-class StorageMock {
-    store = {};
+class StorageParentMock {
+    getItem (key){
+        return this[key];
+    }
+    setItem (key, value)  {
+        this[key] = value;
+    };
+    removeItem (key) {
+        delete this[key];
+    };
+    clear() {
+        const keys = Object.getOwnPropertyNames(this);
+        keys.forEach(key => this.removeItem(key))
+    };
+}
 
-    getItem = (key) => this.store[key];
-    setItem = (key, value) => {
-        this.store[key] = value;
-    };
-    removeItem = (key) => {
-        delete this.store[key];
-    };
-    clear = () => {
-        this.store = {};
-    };
+export class StorageMock extends StorageParentMock{
+
 }
 
 export const stats = (() => {
