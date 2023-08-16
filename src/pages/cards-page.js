@@ -87,11 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
             let cardName = card.getAttribute('data-name');
             if (button.classList.contains('sound-btn')) {
                 playSound(cardName);
-                statistics.updateTrainedWord(cardName);
+                stats.updateTrainedWord(cardName);
             }
             if (button.classList.contains('translation-btn')) {
                 rotateCard(card);
-                statistics.updateTrainedWord(cardName);
+                stats.updateTrainedWord(cardName);
             }
         }
     }
