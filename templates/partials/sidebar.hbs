@@ -1,0 +1,14 @@
+<div class="sidebar-container">
+    <nav class="menu-nav" aria-label="menu">
+        <button class="closeBtn">
+            Close menu
+        </button>
+        <div class="mobile-menu">
+            <ul class="header-nav-list">
+                {{#each cards}}
+                    {{> categoryListItem this}}
+                {{/each}}
+            </ul>
+        </div>
+    </nav>
+</div>
