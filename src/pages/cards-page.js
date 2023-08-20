@@ -84,15 +84,19 @@ document.addEventListener("DOMContentLoaded", () => {
         let button = e.target;
         if (!gameModeOn || button.classList.contains('sound-btn') || button.classList.contains('translation-btn')) {
             let card = button.closest('.card');
-            let cardName = card.getAttribute('data-name');
-            if (button.classList.contains('sound-btn')) {
-                playSound(cardName);
-                statistics.updateTrainedWord(cardName);
+            if (card) {
+                let cardName = card.getAttribute('data-name');
+
+                if (button.classList.contains('sound-btn')) {
+                    playSound(cardName);
+                    stats.updateTrainedWord(cardName);
+                }
+                if (button.classList.contains('translation-btn')) {
+                    rotateCard(card);
+                    stats.updateTrainedWord(cardName);
+                }
             }
-            if (button.classList.contains('translation-btn')) {
-                rotateCard(card);
-                statistics.updateTrainedWord(cardName);
-            }
+
         }
     }
 
