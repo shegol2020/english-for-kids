@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+.header-nav-list{
+    list-style-type: none;
+}
+
+.header-nav-item-link{
+    text-decoration: none;
+    color: black;
+}
+
 .cards-container .card{
     cursor: pointer;
 }
@@ -45,11 +54,14 @@ h2 .category-link{
 .sidebar-container {
     position: fixed;
     top: 0;
+    z-index: 10;
     left: -250px;
     width: 250px;
     height: 100vh;
     background-color: #f1f1f1;
     transition: left 0.3s ease;
+    font-size: 1.2rem;
+    line-height: 3rem;
 }
 
 .sidebar-container.show {

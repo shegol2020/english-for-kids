@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function btnsHandler() {
         switchBtn.addEventListener("click", () => {
-            switchBtn.classList.toggle("btn-primary");
+            switchBtn.classList.toggle("btn-dark");
             switchBtn.classList.toggle("btn-secondary");
             cards.forEach(card => {
-                card.classList.toggle("bg-primary");
+                card.classList.toggle("bg-dark");
                 card.classList.toggle("bg-secondary");
             })
             startBtn.classList.toggle("active");
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
             startBtn.classList.remove("active");
             taskTextEl.classList.add("active");
             cardBody.forEach(card => {
-                card.remove(); //accessibility??
+                card.remove(); //accessibility??F
             })
             const currentCardsNames = getCardsNames();
             playSession = new PlaySession(currentCardsNames, stats);

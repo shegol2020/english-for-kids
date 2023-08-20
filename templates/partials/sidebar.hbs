@@ -3,12 +3,10 @@
         <button class="closeBtn">
             Close menu
         </button>
-        <div class="mobile-menu">
-            <ul class="header-nav-list">
-                {{#each cards}}
+        <ul class="header-nav-list">
+                {{#each categories}}
                     {{> categoryListItem this }}
                 {{/each}}
             </ul>
-        </div>
     </nav>
 </div>

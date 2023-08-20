@@ -2,6 +2,8 @@
 <html lang="en">
 {{> partials/header }}
 <body>
+{{> partials/sidebar }}
+
 <div class="stat-body">
     <h1 class="stat-title">Statistics</h1>
     <button class="stat-clear-btn">Clear</button>
@@ -14,7 +16,7 @@
             </caption>
             {{> partials/stat-table }}
             <tbody>
-            {{#each cards}}
+            {{#each categories}}
                 {{> partials/stat-row this}}
             {{/each}}
             </tbody>

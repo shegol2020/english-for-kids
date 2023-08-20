@@ -6,8 +6,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-import cards from "./cards.json" assert { type: "json" };
-const categories = cards.map(obj => obj.categoryName);
+import categories from "./cards.json" assert { type: "json" };
+//const categories = cards.map(obj => obj.categoryName);
 
 // This is the main configuration object.
 // Here, you write different options and tell Webpack what to do
@@ -53,22 +53,22 @@ export default {
             template: './templates/main-page.hbs',
             chunks: [ "common", "main-page" ],
             filename: "index.html",
-            templateParameters: { cards, categories }
+            templateParameters: { categories }
         }),
-        ...cards.map(card => {
-            console.log(JSON.stringify(card))
+        ...categories.map(category => {
+            console.log(JSON.stringify(category))
             return new HtmlWebpackPlugin({
                 template: './templates/cards-page.hbs',
                 chunks: [ "common", "cards" ],
-                filename: `cards-${card.categoryId}.html`,
-                templateParameters: { cards }
+                filename: `cards-${category.categoryId}.html`,
+                templateParameters: { cards : category.cards, categories : categories}
             })
         }),
         new HtmlWebpackPlugin({
             template: './templates/stats.hbs',
             chunks: [ "common", "stats"],
             filename: "stats.html",
-            templateParameters: { cards }
+            templateParameters: { categories }
         }),
         new HtmlWebpackPlugin({
             template: './templates/wordplay-page.hbs',
