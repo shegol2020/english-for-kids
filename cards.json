@@ -1,62 +1,62 @@
 [
   {
     "categoryId": 1,
-    "categoryName": "Action (set A)",
+    "categoryName": "Action (Set A)",
     "img": "animals1.png",
     "cards": [
-      { "word": "cry", "translation": "плакать" },
-      { "word": "dance", "translation": "танцевать" },
-      { "word": "dive", "translation": "нырять" },
-      { "word": "draw", "translation": "рисовать" },
-      { "word": "fish", "translation": "ловить рыбу" },
-      { "word": "fly", "translation": "летать" },
-      { "word": "hug", "translation": "обнимать" },
-      { "word": "jump", "translation": "прыгать" }
+      { "word": "cry", "translation": "ağlamak" },
+      { "word": "dance", "translation": "dans etmek" },
+      { "word": "dive", "translation": "dalış yapmak" },
+      { "word": "draw", "translation": "çizmek" },
+      { "word": "fish", "translation": "balık tutmak" },
+      { "word": "fly", "translation": "uçmak" },
+      { "word": "hug", "translation": "sarılmak" },
+      { "word": "jump", "translation": "zıplamak" }
     ]
   },
   {
     "categoryId": 2,
     "img": "animals2.png",
-    "categoryName": "Action (set B)",
+    "categoryName": "Action (Set B)",
     "cards":   [
-      { "word": "open", "translation": "открывать" },
-      { "word": "play", "translation": "играть" },
-      { "word": "point", "translation": "указывать" },
-      { "word": "ride", "translation": "ездить" },
-      { "word": "run", "translation": "бегать" },
-      { "word": "sing", "translation": "петь" },
-      { "word": "skip", "translation": "пропускать, прыгать" },
-      { "word": "swim", "translation": "плавать" }
+      { "word": "open", "translation": "açmak" },
+      { "word": "play", "translation": "oynamak" },
+      { "word": "point", "translation": "işaret etmek" },
+      { "word": "ride", "translation": "binmek" },
+      { "word": "run", "translation": "koşmak" },
+      { "word": "sing", "translation": "şarkı söylemek" },
+      { "word": "skip", "translation": "atlamak" },
+      { "word": "swim", "translation": "yüzmek" }
     ]
   },
   {
     "categoryId": 3,
     "img": "animals3.png",
-    "categoryName": "Animal (set A)",
+    "categoryName": "Animal (Set A)",
     "cards": [
-      { "word": "cat", "translation": "кот" },
-      { "word": "chick", "translation": "цыплёнок" },
-      { "word": "chicken", "translation": "курица" },
-      { "word": "dog", "translation": "собака" },
-      { "word": "horse", "translation": "лошадь" },
-      { "word": "pig", "translation": "свинья" },
-      { "word": "rabbit", "translation": "кролик" },
-      { "word": "sheep", "translation": "овца" }
+      { "word": "cat", "translation": "kedi" },
+      { "word": "chick", "translation": "yavru tavuk" },
+      { "word": "chicken", "translation": "tavuk" },
+      { "word": "dog", "translation": "köpek" },
+      { "word": "horse", "translation": "at" },
+      { "word": "pig", "translation": "domuz" },
+      { "word": "rabbit", "translation": "tavşan" },
+      { "word": "sheep", "translation": "koyun" }
     ]
   },
   {
     "categoryId": 4,
     "img": "animals3.png",
-    "categoryName": "Animal (set B)",
+    "categoryName": "Animal (Set B)",
     "cards": [
-      { "word": "bird", "translation": "птица" },
-      { "word": "fish", "translation": "рыба" },
-      { "word": "frog", "translation": "жаба" },
-      { "word": "giraffe", "translation": "жирафа" },
-      { "word": "lion", "translation": "лев" },
-      { "word": "mouse", "translation": "мышь" },
-      { "word": "turtle", "translation": "черепаха" },
-      { "word": "dolphin", "translation": "дельфин" }
+      { "word": "bird", "translation": "kuş" },
+      { "word": "fish", "translation": "balık" },
+      { "word": "frog", "translation": "kurbağa" },
+      { "word": "giraffe", "translation": "zürafa" },
+      { "word": "lion", "translation": "aslan" },
+      { "word": "mouse", "translation": "fare" },
+      { "word": "turtle", "translation": "kaplumbağa" },
+      { "word": "dolphin", "translation": "yunus" }
     ]
   },
   {
@@ -64,14 +64,14 @@
     "img": "animals2.png",
     "categoryName": "Clothes",
     "cards": [
-      { "word": "skirt", "translation": "юбка" },
-      { "word": "pants", "translation": "брюки" },
-      { "word": "blouse", "translation": "блузка" },
-      { "word": "dress", "translation": "платье" },
-      { "word": "boot", "translation": "ботинок" },
-      { "word": "shirt", "translation": "рубашка" },
-      { "word": "coat", "translation": "пальто" },
-      { "word": "shoe", "translation": "туфли" }
+      { "word": "skirt", "translation": "etek" },
+      { "word": "pants", "translation": "pantolon" },
+      { "word": "blouse", "translation": "bluz" },
+      { "word": "dress", "translation": "elbise" },
+      { "word": "boot", "translation": "bot" },
+      { "word": "shirt", "translation": "gömlek" },
+      { "word": "coat", "translation": "palto" },
+      { "word": "shoe", "translation": "ayakkabı" }
     ]
   },
   {
@@ -79,14 +79,14 @@
     "img": "animals1.png",
     "categoryName": "Emotions",
     "cards":   [
-      { "word": "sad", "translation": "грустный" },
-      { "word": "angry", "translation": "сердитый" },
-      { "word": "happy", "translation": "счастливый" },
-      { "word": "tired", "translation": "уставший" },
-      { "word": "surprised", "translation": "удивлённый" },
-      { "word": "scared", "translation": "испуганный" },
-      { "word": "smile", "translation": "улыбка" },
-      { "word": "laugh", "translation": "смех" }
+      { "word": "sad", "translation": "üzgün" },
+      { "word": "angry", "translation": "kızgın" },
+      { "word": "happy", "translation": "mutlu" },
+      { "word": "tired", "translation": "yorgun" },
+      { "word": "surprised", "translation": "şaşkın" },
+      { "word": "scared", "translation": "korkmuş" },
+      { "word": "smile", "translation": "gülümseme" },
+      { "word": "laugh", "translation": "gülme" }
     ]
   }
 ]
