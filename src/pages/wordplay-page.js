@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import cardHtml from "../../templates/partials/card.hbs"
 import cardsContainer from"../../templates/partials/cards-container.hbs"
 import { stats } from "../stat/statistics.js";
+import categories from "../../cards.json" assert { type: "json" };
+
 
 const cardContent = cardHtml();
 const cardsContainerContent = cardsContainer();
@@ -15,6 +17,17 @@ const cardNode = parser.parseFromString(cardContent, 'text/html').body.firstChil
 
 const getCardEl = () => { return cardNode.cloneNode(true); }
 
+function getTranslation(key){
+    const wordsArray = categories.flatMap(category =>
+        category.cards.map(card => ({
+            word: card.word,
+            translation: card.translation
+        }))
+    );
+    const foundWord = wordsArray.find(wordObj => wordObj.word === key);
+    return foundWord.translation;
+}
+
 
 function generateCardNode(names){
     names.forEach(name => {
@@ -22,11 +35,17 @@ function generateCardNode(names){
         card.id = `card_${name}`;
         card.dataset.name = name;
 
-        const cardImg = card.querySelector(".card-img-top");
-        cardImg.src = `/img/cards/${name}.jpg`
+        const cardImgs = card.querySelectorAll(".card-img-top");
+        cardImgs.forEach(cardImg => {
+            cardImg.src = `/img/cards/${name}.jpg`
+        });
+
 
         const cardTitle = card.querySelector(".card-title");
         cardTitle.innerText = name;
+
+        const cardTitleBack = card.querySelector(".card-title-back");
+        cardTitleBack.innerText = getTranslation(name);
 
         const cardAudio = card.querySelector("audio");
         cardAudio.setAttribute("id", `audio_${name}`);
