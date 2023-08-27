@@ -68,6 +68,24 @@ h2 .category-link{
     left: 0;
 }
 
+.menuBtn {
+    position: fixed;
+    left: 150px;
+    top: 10px;
+    z-index: 100;
+}
+
+.sr-only {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+}
+
 button.hidden, p.hidden, div.hidden{
     display: none;
 }
