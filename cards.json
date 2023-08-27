@@ -2,7 +2,7 @@
   {
     "categoryId": 1,
     "categoryName": "Action (Set A)",
-    "img": "animals1.png",
+    "img": "draw.jpg",
     "cards": [
       { "word": "cry", "translation": "ağlamak" },
       { "word": "dance", "translation": "dans etmek" },
@@ -16,7 +16,7 @@
   },
   {
     "categoryId": 2,
-    "img": "animals2.png",
+    "img": "ride.jpg",
     "categoryName": "Action (Set B)",
     "cards":   [
       { "word": "open", "translation": "açmak" },
@@ -31,7 +31,7 @@
   },
   {
     "categoryId": 3,
-    "img": "animals3.png",
+    "img": "bird.jpg",
     "categoryName": "Animal (Set A)",
     "cards": [
       { "word": "cat", "translation": "kedi" },
@@ -46,7 +46,7 @@
   },
   {
     "categoryId": 4,
-    "img": "animals3.png",
+    "img": "cat.jpg",
     "categoryName": "Animal (Set B)",
     "cards": [
       { "word": "bird", "translation": "kuş" },
@@ -61,7 +61,7 @@
   },
   {
     "categoryId": 5,
-    "img": "animals2.png",
+    "img": "boot.jpg",
     "categoryName": "Clothes",
     "cards": [
       { "word": "skirt", "translation": "etek" },
@@ -76,7 +76,7 @@
   },
   {
     "categoryId": 6,
-    "img": "animals1.png",
+    "img": "surprised.jpg",
     "categoryName": "Emotions",
     "cards":   [
       { "word": "sad", "translation": "üzgün" },

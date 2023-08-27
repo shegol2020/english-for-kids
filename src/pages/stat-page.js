@@ -15,8 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", insertStatInTable);
 
+document.addEventListener("DOMContentLoaded", () => {
+    if(!(stats.getTopErrors(8)).length){
+        trainStatBtn.classList.add("hidden");
+    }
+});
+
+
 clearStatBtn.addEventListener("click", () => {
     stats.clearStatistics();
+    trainStatBtn.classList.add("hidden");
 })
 
 trainStatBtn.addEventListener("click", () => {

@@ -3,6 +3,11 @@
 {{> partials/header }}
 <body>
 {{> partials/sidebar }}
+<div class="main-info">
+    <h1>Main page</h1>
+    <p>Pick the category to learn words</p>
+</div>
+
 <div class="container cards-container">
     {{#each categories}}
         {{> partials/category this}}

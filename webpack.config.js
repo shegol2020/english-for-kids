@@ -61,7 +61,7 @@ export default {
                 template: './templates/cards-page.hbs',
                 chunks: [ "common", "cards" ],
                 filename: `cards-${category.categoryId}.html`,
-                templateParameters: { cards : category.cards, categories : categories}
+                templateParameters: { category : category, categories : categories}
             })
         }),
         new HtmlWebpackPlugin({

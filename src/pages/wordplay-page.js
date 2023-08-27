@@ -4,11 +4,13 @@ import cardHtml from "../../templates/partials/card.hbs"
 import cardsContainer from"../../templates/partials/cards-container.hbs"
 import { stats } from "../stat/statistics.js";
 import categories from "../../cards.json" assert { type: "json" };
+import "../common.js"
 
 
 const cardContent = cardHtml();
 const cardsContainerContent = cardsContainer();
-document.body.innerHTML = cardsContainerContent;
+const mainContainer = document.querySelector(".main-container")
+mainContainer.innerHTML = cardsContainerContent;
 const parser = new DOMParser();
 
 const cardsContainerEl = document.querySelector(".cards-container");
