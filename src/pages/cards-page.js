@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const successAudio = new Audio('audio/success.mp3');
     const failureAudio = new Audio('audio/failure.mp3');
     const taskTextEl = document.querySelector(".task-text");
-    const switchBtn = document.querySelector(".switch-btn");
     const startBtn = document.querySelector(".start-btn");
     const repeatBtn = document.querySelector(".repeat-btn");
     const quitBtn = document.querySelector(".quit-btn");
@@ -34,16 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function btnsHandler() {
-        switchBtn.addEventListener("click", () => {
-            switchBtn.classList.toggle("btn-dark");
-            switchBtn.classList.toggle("btn-secondary");
-            cards.forEach(card => {
-                card.classList.toggle("bg-dark");
-                card.classList.toggle("bg-secondary");
-            })
-            startBtn.classList.toggle("active");
-        });
-
         startBtn.addEventListener("click", () => {
             repeatBtn.classList.add("active");
             quitBtn.classList.add("active");

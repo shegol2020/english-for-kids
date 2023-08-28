@@ -118,6 +118,7 @@ p.task-text{
 }
 
 table.sortable th {
+    height: 50px;
     min-width: 120px;
     position: relative;
 }
