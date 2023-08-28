@@ -14,8 +14,6 @@ let gameModeOn = false;
 document.addEventListener("DOMContentLoaded", () => {
 
     const cardsContainer = document.querySelector(".cards-container");
-    const card = document.querySelector(".card");
-    const categoryLink = document.querySelector(".category-link");
     const cards = document.querySelectorAll(".card");
     const answerContainer = document.querySelector(".answer-container");
     const successAudio = new Audio('audio/success.mp3');
@@ -115,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (isAnswerRight) {
             blockCard(cardElement);
-            playCurrentAudio(currentCard); //async?
             renderCurrentWord(currentCard);
         }
 
